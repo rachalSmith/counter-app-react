@@ -33,7 +33,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="container">
       <Header />
       <Counter counterValue={counterValue}/>
       <Input

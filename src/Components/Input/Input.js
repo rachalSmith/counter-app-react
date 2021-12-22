@@ -1,7 +1,10 @@
+import PropTypes from 'prop-types';
+
 function Input({ inputValue, addToCounter, substractFromCounter, onChange }) {
     return (
-      <div>
+      <div className="input-container">
           <button
+                className="subtract-button"
                 data-testid="subtract-button"
                 onClick={substractFromCounter}
 
@@ -11,15 +14,23 @@ function Input({ inputValue, addToCounter, substractFromCounter, onChange }) {
                 type="number"
                 value={inputValue}
                 onChange={onChange}
-
+                className="input-field"
             />
           <button
+                className="add-button"
                 data-testid="add-button"
                 onClick={addToCounter}
           >+</button>
       </div>
     );
-  }
+}
 
-  export default Input;
+export default Input;
+
+Input.propTypes = {
+      inputValue : PropTypes.number.isRequired,
+      addToCounter : PropTypes.func.isRequired,
+      substractFromCounter : PropTypes.func.isRequired,
+      onChange : PropTypes.func.isRequired
+}
 

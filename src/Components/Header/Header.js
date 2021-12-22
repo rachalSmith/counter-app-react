@@ -1,7 +1,7 @@
 function Header() {
     return (
-      <div>
-          <h3>Counter</h3>
+      <div className="header">
+          <h1>Counter</h1>
       </div>
     );
   }

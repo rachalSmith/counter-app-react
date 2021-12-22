@@ -1,9 +1,16 @@
+import PropTypes from 'prop-types';
+
 function Counter({ counterValue }) {
     return (
-      <>
-          <h2 data-testid="counter">{ counterValue }</h2>
-      </>
+      <div className="counter">
+          <h1 data-testid="counter">{ counterValue }</h1>
+      </div>
     );
-  }
+}
 
-  export default Counter;
+export default Counter;
+
+Counter.propTypes = {
+  counterValue : PropTypes.number.isRequired
+}
+

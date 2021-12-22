@@ -14,9 +14,9 @@ This app is being built using Test Driven Design as a guiding principle.
 
 - [X] Refactor JSX into smaller component folders.   
 - [X] Refactor tests (add loops in longer test). 
-- [ ] Add proptypes.
+- [X] Add proptypes.
 - [X] Create a reset button. 
-- [ ] Refactor after code reveiw. 
+- [ ] Refactor after reveiw. 
 
 
 ### Usage

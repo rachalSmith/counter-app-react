@@ -21,6 +21,8 @@ This app is being built using Test Driven Design as a guiding principle.
 
 ### Usage
 
+Manually tested and working with Node version: 16.13.0
+
 #### Install dependencies
 
 ```bash

@@ -1,112 +1,78 @@
 import React from "react";
-import { render, fireEvent, cleanup } from "@testing-library/react";
+import App from './App';
+
+import { render, screen } from '@testing-library/react';
 import "@testing-library/jest-dom/extend-expect";
 
-import App from "./App";
+import { setupServer } from 'msw/node';
+import { rest } from 'msw';
 
 
-beforeEach(() => {
-    const component = render(<App />);
-    getByTestId = component.getByTestId;
+// mock API data for Manchester
+const mockCityDataManchester = {
+  categories: [
+  {color: '#f3c32c', name: 'Housing', score_out_of_10: 6.455500000000001},
+  {color: '#f3d630', name: 'Cost of Living', score_out_of_10: 5.049000000000001},
+  {color: '#f4eb33', name: 'Startups', score_out_of_10: 5.769500000000001}
+  ],
+  summary: "<p>Manchester, United Kingdom, is among the top cities with",
+  teleport_city_score: 60.752702702702685
+}
 
-    inputElement = getByTestId('input');
-    addButton = getByTestId('add-button');
-    subtractButton = getByTestId('subtract-button');
-    counterElement = getByTestId('counter');
+const citiesUrl = 'https://api.teleport.org/api/urban_areas/slug:manchester/scores/'
 
-})
+// sets up a server which listens for any get request to the url and
+// returns a mock response with json body where data property is set to
+// the mock data declared above
+const server = setupServer(
+  rest.get(citiesUrl, (req, res, ctx) => {
+     return res(ctx.json({ data: mockCityDataManchester }))
+  }),
+)
 
-let getByTestId;
-
-let addButton, subtractButton, inputElement, counterElement;
-
-
-afterEach(() => {
-    cleanup();
-})
-
-
-describe('add and substract buttons', () => {
-    beforeEach(() => {
-        expect(counterElement.textContent).toBe('0');
-    })
-
-    describe('add button', () => {
-        it('should add one when + button is clicked', () => {
-            fireEvent.click(addButton);
-            expect(counterElement.textContent).toBe('1');
-        })
-    })
-
-    describe('subtract button', () => {
-        it('should subtract one when - button is clicked', () => {
-            fireEvent.click(subtractButton);
-            expect(counterElement.textContent).toBe('-1');
-        })
-    })
-})
+// ensure server is listening to intercept http requests
+//
+// close connection with server
+beforeAll(() => server.listen());
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());
 
 
-describe('Input field', () => {
-    it('should change the value of the input field by any amount', () => {
-        expect(inputElement.value).toBe('1');
+it('should render API data', async () => {
+  const component = render(<App /> );
+  const radarData = await component.findByTestId('radarData');
 
-        fireEvent.change(inputElement, {
-            target: {
-                value: "5"
-            }
-        });
-
-        expect(inputElement.value).toBe('5');
-    })
-})
-
-
-describe('add button, subtract button and input field interacting together', () => {
-    it('should both add and subract while rendering the correct counter number', () => {
-        fireEvent.change(inputElement, {
-            target: {
-                value: '10'
-            }
-        })
-
-        for ( let i = 0; i < 20; i++ ) {
-            fireEvent.click(addButton);
-        }
-
-        for ( let i = 0; i < 10; i++ ) {
-            fireEvent.click(subtractButton);
-        }
-
-        expect(counterElement.textContent).toBe('100');
-    })
-})
-
-
-describe('reset button', () => {
-    beforeEach(() => {
-        resetButton = getByTestId('reset-button');
-
-        fireEvent.change(inputElement, {
-            target: {
-                value: '10'
-            }
-        })
-        fireEvent.click(resetButton);
-    })
-
-    let resetButton;
-
-    it('should set counter to 0 when clicked', () => {
-        expect(counterElement.textContent).toBe('0');
-    })
-
-    it('should set the input field to 1 when clicked', () => {
-        expect(inputElement.value).toBe('1');
-    })
+  expect(radarData).toBeVisible();
 })
 
 
 
+it('should render the Header component', () => {
+  render(<App />);
+  const headerComponent = screen.getByRole('heading');
+  expect(headerComponent).toBeVisible();
+});
 
 
+describe('InputField Component', () => {
+  it('should render an input field', () => {
+    render(<App />);
+    const inputField = screen.getByLabelText('Search');
+    expect(inputField).toHaveAttribute('name', 'input-field');
+  })
+})
+
+
+
+it('Should render the RadarChart component', () => {
+  render(<App />);
+  const radarChartComponent = screen.getByText(/Radar Chart/i);
+  expect(radarChartComponent).toBeVisible();
+});
+
+
+it('Should render the AverageCalculation component', () => {
+  render(<App />);
+  const avCalcComponent = screen.getByText('Average Calculation');
+  expect(avCalcComponent).toBeVisible();
+});

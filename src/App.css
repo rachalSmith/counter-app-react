@@ -1,81 +1,57 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:700);
-
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-body {
-  font-family : Roboto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 20px;
-  background : #FBC02D;
-}
 
 .container {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  height: 450px;
-  width: 320px;
-  margin-top: 20px;
-  border-radius: 2px;
-  box-shadow: 0px 3px 8px rgba(0,0,0,0.25);
-  background: white;
-}
-
-.header, .counter {
-  margin-top: 20px;
-  padding: 15px;
-}
-
-.reset-button {
-  font-size: medium;
-  font-weight: 900;
-  color : white;
-  background: #3D4C53;
-  margin: 20px auto;
-  width: 180px;
-  height: 45px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.75fr 0.5fr 2.5fr;
+  gap: 0% 0%;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "header"
+    "input-field"
+    "data-container";
+    gap: 3%;
   text-align: center;
-  cursor: pointer;
-  border-radius: 3px;
-  box-shadow: 0px 1px 2px rgba(0,0,0,.2);
-  letter-spacing: 1px;
+  padding: 5px;
+  height: 100vh;
+  width: 100vw;
 }
 
-.subtract-button, .add-button {
-  width: 40px;
-  height: 40px;
-  font-size: large;
-  font-weight: 900;
-  background : #26A69A;
-  color : white;
-  cursor: pointer;
-  border: none;
-  box-shadow: 0px 1px 2px rgba(0,0,0,.2);
+.header {
+  grid-area: header;
+  border: solid yellow;
 }
-
-
 
 .input-field {
-  font-size: large;
-  text-align: center;
-  width: 140px;
-  height: 40px;
-  border: none;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  grid-area: input-field;
+  border: solid blue;
 }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+.data-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "radar-chart average-calculation";
+  grid-area: data-container;
+  gap: 0% 2%;
+  border: solid tomato;
+  padding: 3px;
 }
 
-.input-container {
-  padding: 20px;
+.radar-chart {
+  grid-area: radar-chart;
+  border: solid teal;
+}
+
+.average-calculation {
+  grid-area: average-calculation;
+  border: solid rebeccapurple;
 }

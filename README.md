@@ -11,6 +11,10 @@ This app is being built using Test Driven Design as a guiding principle.
 
 Re-made with Bootstrap for styling.
 
+Deployment can be viewed here: 
+
+https://rachalsmith.github.io/deployed-counter-app-react/
+
 
 ### Usage
 

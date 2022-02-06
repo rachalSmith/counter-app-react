@@ -1,62 +1,60 @@
-import './App.css';
-import AverageCalculation from './components/AverageCalculation';
-import Header from './components/Header';
-import InputField from './components/InputField';
-import RadarChart from './components/RadarChart';
+import Header from './Components/Header/Header';
+import Counter from './Components/Counter/Counter';
+import Input from './Components/Input/Input';
+import ResetButton from './Components/ResetButton/ResetButton';
+import './custom.css';
 
-import { useState, useEffect } from 'react';
-
+import { useState } from 'react';
 
 function App() {
+  const [counterValue, setCounterValue] = useState(0);
+  const [inputValue, setInputValue] = useState(1);
 
-  useEffect(() => {
 
-    const cityQuery = "manchester";
-    const citiesUrl = `https://api.teleport.org/api/urban_areas/slug:${cityQuery}/scores/`
+  const addToCounter = () => {
+      setCounterValue(counterValue + inputValue);
+  }
 
-    //  Returns a raw array of data from API
-    const fetchCities = async () => {
-      try {
-        const response = await fetch(citiesUrl);
-        const data = await response.json();
 
-        parsedData(data);
-      }
-      catch(error) {
-        console.log('error', error);
-      }
-    }
+  const substractFromCounter = () => {
+      setCounterValue(counterValue - inputValue);
+  }
 
-    fetchCities();
 
-    const parsedData = (data) => {
+  const updateValue = (event) => {
+    setInputValue(parseInt(event.target.value));
+  }
 
-      console.log(data)
+  const resetValues = () => {
 
-      const results = data.categories;
-
-      const cleanData = results.map(scores => {
-        return (
-          <li>
-            {[scores.name, scores.score_out_of_10]}
-          </li>
-        )
-      })
-
-      setRadarData(cleanData)
-    }
-
-  }, [])
-
-   const [radarData, setRadarData] = useState();
+    setCounterValue(0);
+    setInputValue(parseInt(1));
+  }
 
   return (
-    <div className="container">
-      <Header />
-      <InputField />
-      <div className="data-container">
-        <RadarChart data={radarData}/>
-        <AverageCalculation />
+    <div className="main-custom
+                    container-fluid
+                    d-flex
+                    flex-column
+                    align-items-center
+                    p-5">
+      <Header/>
+      <div className="card
+                      col-sm-6
+                      align-items-center
+                      p-5
+                      shadow
+                      mb-5
+                      bg-body
+                      rounded">
+      <Counter counterValue={counterValue}/>
+      <Input
+          inputValue={inputValue}
+          addToCounter={addToCounter}
+          substractFromCounter={substractFromCounter}
+          onChange={updateValue}
+      />
+      <ResetButton resetValues={resetValues} />
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 function Header() {
     return (
-      <div className="header">
-          <h1>Counter</h1>
+      <div className="mb-4">
+          <h1 className="fw-bold">Counter</h1>
       </div>
     );
   }

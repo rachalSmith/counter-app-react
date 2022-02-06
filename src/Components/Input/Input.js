@@ -1,28 +1,47 @@
 import PropTypes from 'prop-types';
 
 function Input({ inputValue, addToCounter, substractFromCounter, onChange }) {
-    return (
-      <div className="input-container">
+  return (
+    <>
+      <label
+        className="label-custom row mb-1"
+        htmlFor="number-input">Enter a number:
+      </label>
+      <div className="input-group mb-4">
+        <div className="input-group-prepend">
           <button
-                className="subtract-button"
-                data-testid="subtract-button"
-                onClick={substractFromCounter}
-
+            type="button"
+            className="btn
+                       btn-override
+                       btn-primary
+                       shadow-sm"
+            onClick={substractFromCounter}
           >-</button>
-          <input
-                data-testid="input"
-                type="number"
-                value={inputValue}
-                onChange={onChange}
-                className="input-field"
-            />
+        </div>
+        <input
+          className="form-control
+                     text-center
+                     shadow-sm"
+          id="number-input"
+          type="number"
+          value={inputValue}
+          onChange={onChange}
+          aria-label="number input"
+          aria-describedby="basic-addon2"
+        />
+        <div className="input-group-append">
           <button
-                className="add-button"
-                data-testid="add-button"
-                onClick={addToCounter}
-          >+</button>
+            className="btn
+                       btn-override
+                       btn-primary
+                       shadow-sm"
+            onClick={addToCounter}
+            type="button"
+           >+</button>
+        </div>
       </div>
-    );
+    </>
+  );
 }
 
 export default Input;

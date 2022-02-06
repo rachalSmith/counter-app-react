@@ -1,11 +1,15 @@
+import Button from 'react-bootstrap/Button';
+
 function ResetButton({ resetValues }) {
     return (
       <div>
-          <button
-                className="reset-button"
-                data-testid="reset-button"
+          <Button
+                type="button"
+                className="btn
+                           btn-secondary
+                           mb-4"
                 onClick={resetValues}
-          >Clear</button>
+          >Clear</Button>
       </div>
     );
   }

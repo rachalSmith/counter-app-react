@@ -9,6 +9,8 @@ This app allows you to count up and down by 1, or a set input number.
 
 This app is being built using Test Driven Design as a guiding principle. 
 
+Re-made with Bootstrap for styling.
+
 
 ### Usage
 

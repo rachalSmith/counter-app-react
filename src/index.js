@@ -5,12 +5,16 @@ import reportWebVitals from './reportWebVitals';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import inputReducer from './reducers/input';
+// import rootReducers from './reducers';
+import counterReducer from './reducers/counter';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
+
+
 const store = createStore(
-  inputReducer,
+  // rootReducers,
+  counterReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
 

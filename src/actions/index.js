@@ -9,3 +9,15 @@ export const decrement = () => {
         type: 'input/decrement'
     }
 }
+
+export const reset = () => {
+    return {
+        type: 'input/reset'
+    }
+}
+
+export const multiplier = () => {
+    return {
+        type: 'input/multiplier'
+    }
+}

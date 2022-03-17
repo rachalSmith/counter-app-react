@@ -1,6 +1,12 @@
 import Button from 'react-bootstrap/Button';
+import { reset } from '../../actions';
 
-function ResetButton({ resetValues }) {
+import { useDispatch } from 'react-redux';
+
+function ResetButton() {
+
+  const dispatch = useDispatch();
+
     return (
       <div>
           <Button
@@ -8,7 +14,7 @@ function ResetButton({ resetValues }) {
                 className="btn
                            btn-secondary
                            mb-4"
-                onClick={resetValues}
+                onClick={() => dispatch(reset())}
           >Clear</Button>
       </div>
     );

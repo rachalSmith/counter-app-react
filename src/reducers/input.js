@@ -1,23 +1,15 @@
-let initialState = {value: 10};
+let initialMultiplierState = {multiplierValue: 12};
 
-const inputReducer = (state = initialState, action) => {
-    if (action.type === 'input/increment') {
+
+const multiplierReducer = (state = initialMultiplierState, action) => {
+    if (action.type === 'input/multiplier') {
         return {
             ...state,
-            value: state.value +1
+            counterValue: state.multiplierValue +1
         }
-    }
-
-    else if (action.type === 'input/decrement') {
-        return {
-            ...state,
-            value: state.value +1
-        }
-    }
-
-    else {
+    } else {
         return state
     }
 }
 
-export default inputReducer;
+export default multiplierReducer;

@@ -1,6 +1,11 @@
-import PropTypes from 'prop-types';
+import { increment, decrement } from '../../actions';
 
-function Input({ inputValue, addToCounter, substractFromCounter, onChange }) {
+import { useDispatch } from 'react-redux';
+
+function Input() {
+
+  const dispatch = useDispatch();
+
   return (
     <>
       <label
@@ -15,7 +20,7 @@ function Input({ inputValue, addToCounter, substractFromCounter, onChange }) {
                        btn-override
                        btn-primary
                        shadow-sm"
-            onClick={substractFromCounter}
+            onClick={() => dispatch(decrement())}
           >-</button>
         </div>
         <input
@@ -24,8 +29,8 @@ function Input({ inputValue, addToCounter, substractFromCounter, onChange }) {
                      shadow-sm"
           id="number-input"
           type="number"
-          value={inputValue}
-          onChange={onChange}
+          value='10000000000'
+          // onChange={onChange}
           aria-label="number input"
           aria-describedby="basic-addon2"
         />
@@ -35,7 +40,7 @@ function Input({ inputValue, addToCounter, substractFromCounter, onChange }) {
                        btn-override
                        btn-primary
                        shadow-sm"
-            onClick={addToCounter}
+            onClick={() => dispatch(increment())}
             type="button"
            >+</button>
         </div>
@@ -45,11 +50,4 @@ function Input({ inputValue, addToCounter, substractFromCounter, onChange }) {
 }
 
 export default Input;
-
-Input.propTypes = {
-      inputValue : PropTypes.number.isRequired,
-      addToCounter : PropTypes.func.isRequired,
-      substractFromCounter : PropTypes.func.isRequired,
-      onChange : PropTypes.func.isRequired
-}
 

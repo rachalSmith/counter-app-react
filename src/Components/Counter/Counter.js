@@ -2,7 +2,8 @@ import { useSelector } from 'react-redux';
 
 function Counter() {
 
-    const reduxCounterValue = useSelector(state => state.counterValue)
+
+    const reduxCounterValue = useSelector(state => state.counterReducer.counterValue);
 
 
     return (

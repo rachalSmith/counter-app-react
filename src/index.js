@@ -6,17 +6,20 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // import rootReducers from './reducers';
-import counterReducer from './reducers/counter';
+// import multiplierReducer from './reducers/input';
+// import counterReducer from './reducers/counter';
+
+import rootReducers from './reducers';
+
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
-
-
 const store = createStore(
-  // rootReducers,
-  counterReducer,
+  rootReducers,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-)
+  )
+  console.log(store.getState())
+
 
 
 ReactDOM.render(

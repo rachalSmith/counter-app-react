@@ -5,12 +5,10 @@ import counterReducer from './counter';
 import multiplierReducer from './input';
 
 
-const rootReducer = combineReducers({
-    counterReducer: counterReducer,
-    multiplierReducer: multiplierReducer
+const rootReducers = combineReducers({
+    counterReducer,
+    multiplierReducer
+  })
 
-})
-
-export default rootReducer;
-
+  export default rootReducers;
 

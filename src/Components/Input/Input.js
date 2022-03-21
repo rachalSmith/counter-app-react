@@ -1,8 +1,11 @@
 import { increment, decrement } from '../../actions';
 
 import { useDispatch } from 'react-redux';
+import { useState } from 'react';
 
 function Input() {
+
+  const [incrementAmount, setIncrementAmount] = useState(1);
 
   const dispatch = useDispatch();
 
@@ -20,7 +23,7 @@ function Input() {
                        btn-override
                        btn-primary
                        shadow-sm"
-            onClick={() => dispatch(decrement())}
+            onClick={() => dispatch(decrement(incrementAmount))}
           >-</button>
         </div>
         <input
@@ -29,8 +32,8 @@ function Input() {
                      shadow-sm"
           id="number-input"
           type="number"
-          value='10000000000'
-          // onChange={onChange}
+          value={incrementAmount}
+          onChange={event => setIncrementAmount(parseInt(event.target.value))}
           aria-label="number input"
           aria-describedby="basic-addon2"
         />
@@ -40,7 +43,7 @@ function Input() {
                        btn-override
                        btn-primary
                        shadow-sm"
-            onClick={() => dispatch(increment())}
+            onClick={() => dispatch(increment(incrementAmount))}
             type="button"
            >+</button>
         </div>

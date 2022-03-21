@@ -5,14 +5,14 @@ const counterReducer = (state = initialCounterState, action) => {
     if (action.type === 'input/increment') {
         return {
             ...state,
-            counterValue: state.counterValue +1
+            counterValue: state.counterValue + action.payload
         }
     }
 
     else if (action.type === 'input/decrement') {
         return {
             ...state,
-            counterValue: state.counterValue -1
+            counterValue: state.counterValue - action.payload
         }
     }
 

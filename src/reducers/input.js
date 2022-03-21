@@ -1,4 +1,4 @@
-let initialMultiplierState = {multiplierValue: 12};
+let initialMultiplierState = {multiplierValue: 1};
 
 
 const multiplierReducer = (state = initialMultiplierState, action) => {
